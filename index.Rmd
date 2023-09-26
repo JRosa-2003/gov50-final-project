@@ -1,6 +1,6 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
+author: "Jacob DeLaRosa"
 description: "My final project"
 output:
   distill::distill_article:
@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to...
+I am interested in exploring data related to congress voting patterns between Democrats and Republicans throughout the history of the United States to try and illustrate how we as a two-party nation have become more and more polarized as the years go on.  
