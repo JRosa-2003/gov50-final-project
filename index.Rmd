@@ -11,31 +11,24 @@ output:
 
 ## Project Thoughts (Milestone 1)
 
+### Discription:
 I am interested in exploring data related to congress voting patterns between Democrats and Republicans throughout the history of the United States to try and illustrate how we as a two-party nation have become more and more polarized as the years go on.  
 
 
 ## Finding Data and Proposal (Milestone 2)
 
-Data:
+### Data:
 ```{r}
 library(tidyverse)
 #data <- read.csv("Congressional Historical Statistics/main file/Election Table Data.dta")
 
 ```
 Could not open data
-Link:
+Link to the source of data:
 https://www.icpsr.umich.edu/web/ICPSR/studies/3371/datadocumentation
 
-
-State your research question.
-
-Formulate a hypothesis related to the research question. This hypothesis should be rooted in some sort of theory. In other words, you need to present a plausible story why the hypothesis might be true. Often, this is in the form of a behaviorial or institutional explanation. As social scientists, we are not interested in idiosyncratic explanations; we want to understand systematic patterns and relationships!
-
-Describe your explanatory variable(s) of interest and how it is measured. Importantly, we need to observe variation in this variable in order to study it!
-
-Describe your outcome variable of interest and how it is measured.
-
-What observed pattern in the data would provide support for your hypothesis? More importantly, what observed pattern would disprove your hypothesis?
+### Discription:
+My research question for my project is one I find very interesting and important. Is the United States of America more polarized than ever, or has it seen worse? Looking at the news and media nowadays, all we see is anger, lack of communication, misunderstanding, and hate. However, is this true, or is it just the media outlets making up stories to generate viewership? This project will attempt to prove or discredit these claims. I hypothesize that if the media is correct in its claims, then the United State's center of Democracy, its Congress, should reflect this disunity. For this project, I plan to observe voting patterns between Democrats and Republicans in the House of Representatives. Starting after the end of the Second World War, from the 81st Congress of the United States and on to the modern day. I chose this starting point because the end of World War II was a turbulent time for politics in the US, and this is when we begin to see our modern forms of Republicans and Democrats. We will examine which party each representative falls under and then examine which side won the majority of a particular vote. By doing this, we will be able to see when Democrats vote with Republicans or when Republicans vote with Democrats. Then, I will see if this bipartisanship grows, stays the same, or declines over the years. This means that if this bipartisan voting stays the same or has grown, then my hypothesis and the media would have been wrong. However, if the data shows a decline, It will prove that my hypothesis is correct. 
 
 
 
