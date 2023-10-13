@@ -22,7 +22,7 @@ library(tidyverse)
 data <- read.csv("Congressional Historical Statistics/main file/Election Table Data.dta")
 
 ```
-Could not open file
+Could not open data
 Link:
 https://www.icpsr.umich.edu/web/ICPSR/studies/3371/datadocumentation
 
