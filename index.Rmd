@@ -9,6 +9,37 @@ output:
 
 
 
-## Project thoughts
+## Project Thoughts (Milestone 1)
 
 I am interested in exploring data related to congress voting patterns between Democrats and Republicans throughout the history of the United States to try and illustrate how we as a two-party nation have become more and more polarized as the years go on.  
+
+
+## Finding Data and Proposal (Milestone 2)
+
+Data:
+```{r}
+library(tidyverse)
+data <- read.csv("Congressional Historical Statistics/main file/Election Table Data.dta")
+
+```
+Could not open file
+Link:
+https://www.icpsr.umich.edu/web/ICPSR/studies/3371/datadocumentation
+
+
+State your research question.
+
+Formulate a hypothesis related to the research question. This hypothesis should be rooted in some sort of theory. In other words, you need to present a plausible story why the hypothesis might be true. Often, this is in the form of a behaviorial or institutional explanation. As social scientists, we are not interested in idiosyncratic explanations; we want to understand systematic patterns and relationships!
+
+Describe your explanatory variable(s) of interest and how it is measured. Importantly, we need to observe variation in this variable in order to study it!
+
+Describe your outcome variable of interest and how it is measured.
+
+What observed pattern in the data would provide support for your hypothesis? More importantly, what observed pattern would disprove your hypothesis?
+
+
+
+
+
+
+
