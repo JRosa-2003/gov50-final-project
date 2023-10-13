@@ -19,7 +19,7 @@ I am interested in exploring data related to congress voting patterns between De
 Data:
 ```{r}
 library(tidyverse)
-data <- read.csv("Congressional Historical Statistics/main file/Election Table Data.dta")
+#data <- read.csv("Congressional Historical Statistics/main file/Election Table Data.dta")
 
 ```
 Could not open data
