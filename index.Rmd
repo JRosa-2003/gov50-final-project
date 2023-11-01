@@ -20,22 +20,83 @@ I am interested in exploring data related to congress voting patterns between De
 ### Data:
 ```{r}
 library(tidyverse)
+library(ggplot2)
 data <- read.csv("data/Party Voting Splits(main).csv")
 
 data
 
 ```
 
+
+```{r}
+data1 <- data |>
+  mutate(congress_number = X35,
+         roll_call_number = X1,
+         month = X12,
+         day = X7,
+         year = X1857,
+         number_missing_votes = X26,
+         number_yeas = X211,
+         number_nays = X6,
+         number_republican_yeas = X82,
+         number_republican_nays = X3,
+         number_democrat_yeas = X124,
+         number_democrat_nays = X0) |>
+  filter(congress_number >= 76) |>
+  select(congress_number, roll_call_number, month, day, year, number_missing_votes, number_yeas, number_nays, number_republican_yeas, number_republican_nays, number_democrat_yeas, number_democrat_nays)
+
+data1
+```
+
 ### Discription:
 My research question for my project is one I find very interesting and important. Is the United States of America more polarized than ever, or has it seen worse? Looking at the news and media nowadays, all we see is anger, lack of communication, misunderstanding, and hate. However, is this true, or is it just the media outlets making up stories to generate viewership? This project will attempt to prove or discredit these claims. I hypothesize that if the media is correct in its claims, then the United State's center of Democracy, its Congress, should reflect this disunity. For this project, I plan to observe voting patterns between Democrats and Republicans in the House of Representatives. Starting after the end of the Second World War, from the 81st Congress of the United States and on to the modern day. I chose this starting point because the end of World War II was a turbulent time for politics in the US, and this is when we begin to see our modern forms of Republicans and Democrats. We will examine which party each representative falls under and then examine which side won the majority of a particular vote. By doing this, we will be able to see when Democrats vote with Republicans or when Republicans vote with Democrats. Then, I will see if this bipartisanship grows, stays the same, or declines over the years. This means that if this bipartisan voting stays the same or has grown, then my hypothesis and the media would have been wrong. However, if the data shows a decline, It will prove that my hypothesis is correct. 
 
 
+## One data visualization (Milestone 3)
 
-
+### Data visualization (Number Yeas):
 ```{r}
-data1 <- data |>
-  mutate(congress_number = X35) |>
-  filter(congress_number >= 76)
+data2 <- data1 |>
+  ggplot(data = data1,
+       mapping = aes(x = year,
+                     y = number_yeas)) +
+  geom_col() + 
+  labs(
+    x = "Year",
+    y = "Number Yeas")
+
+data2
+```
+
+
+### Data visualization (Number Nays):
+```{r}
+data3 <- data1 |>
+  ggplot(data = data1,
+       mapping = aes(x = year,
+                     y = number_nays)) +
+  geom_col()+ 
+  labs(
+    x = "Year",
+    y = "Number Nays") 
+
+data3
+
+```
+
+
+### Data visualization (Number of Missing Votes):
+```{r}
+data4 <- data1 |>
+  ggplot(data = data1,
+       mapping = aes(x = year,
+                     y = number_missing_votes)) +
+  geom_col()+ 
+  labs(
+    x = "Year",
+    y = "Number Missing Votes (not voting and not in Congress)") 
+
+data4
 
 ```
 
