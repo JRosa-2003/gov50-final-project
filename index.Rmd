@@ -41,9 +41,7 @@ data1 <- data |>
          number_democrat_yeas = X124,
          number_democrat_nays = X0) |>
   filter(congress_number >= 76) |>
-  select(congress_number, roll_call_number, month, day, year, number_missing_votes, number_yeas, number_nays, number_republican_yeas, number_republican_nays, number_democrat_yeas, number_democrat_nays)
-
-data1
+  select(congress_number, roll_call_number, month, day, year, number_missing_votes, number_yeas, number_nays, number_republican_yeas, number_republican_nays, number_democrat_yeas, number_democrat_nays) 
 ```
 
 ### Discription:

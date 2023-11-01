@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":[" Congressional Historical Statistics/03371-descriptioncitation.html"," Congressional Historical Statistics/03371-manifest.txt"," Congressional Historical Statistics/03371-related_literature.txt"," Congressional Historical Statistics/main file/03371-0001-Codebook.pdf"," Congressional Historical Statistics/main file/Election Table Data.dta"," Congressional Historical Statistics/TermsOfUse.html","ICPSR_03371-V2.zip","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/Party Voting Splits(main).csv","hdemrep35_113.xlsx","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1525,14 +1525,80 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
-<span><span class='co'>#data &lt;- read.csv("Congressional Historical Statistics/main file/Election Table Data.dta")</span></span></code></pre>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/Party Voting Splits(main).csv"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Could not open data
-Link to the source of data:
-<a href="https://www.icpsr.umich.edu/web/ICPSR/studies/3371/datadocumentation" class="uri">https://www.icpsr.umich.edu/web/ICPSR/studies/3371/datadocumentation</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data1</span> <span class='op'>&lt;-</span> <span class='va'>data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>congress_number <span class='op'>=</span> <span class='va'>X35</span>,</span>
+<span>         roll_call_number <span class='op'>=</span> <span class='va'>X1</span>,</span>
+<span>         month <span class='op'>=</span> <span class='va'>X12</span>,</span>
+<span>         day <span class='op'>=</span> <span class='va'>X7</span>,</span>
+<span>         year <span class='op'>=</span> <span class='va'>X1857</span>,</span>
+<span>         number_missing_votes <span class='op'>=</span> <span class='va'>X26</span>,</span>
+<span>         number_yeas <span class='op'>=</span> <span class='va'>X211</span>,</span>
+<span>         number_nays <span class='op'>=</span> <span class='va'>X6</span>,</span>
+<span>         number_republican_yeas <span class='op'>=</span> <span class='va'>X82</span>,</span>
+<span>         number_republican_nays <span class='op'>=</span> <span class='va'>X3</span>,</span>
+<span>         number_democrat_yeas <span class='op'>=</span> <span class='va'>X124</span>,</span>
+<span>         number_democrat_nays <span class='op'>=</span> <span class='va'>X0</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>congress_number</span> <span class='op'>&gt;=</span> <span class='fl'>76</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>congress_number</span>, <span class='va'>roll_call_number</span>, <span class='va'>month</span>, <span class='va'>day</span>, <span class='va'>year</span>, <span class='va'>number_missing_votes</span>, <span class='va'>number_yeas</span>, <span class='va'>number_nays</span>, <span class='va'>number_republican_yeas</span>, <span class='va'>number_republican_nays</span>, <span class='va'>number_democrat_yeas</span>, <span class='va'>number_democrat_nays</span><span class='op'>)</span> </span></code></pre>
+</div>
+</div>
 <h3 id="discription-1">Discription:</h3>
 <p>My research question for my project is one I find very interesting and important. Is the United States of America more polarized than ever, or has it seen worse? Looking at the news and media nowadays, all we see is anger, lack of communication, misunderstanding, and hate. However, is this true, or is it just the media outlets making up stories to generate viewership? This project will attempt to prove or discredit these claims. I hypothesize that if the media is correct in its claims, then the United State’s center of Democracy, its Congress, should reflect this disunity. For this project, I plan to observe voting patterns between Democrats and Republicans in the House of Representatives. Starting after the end of the Second World War, from the 81st Congress of the United States and on to the modern day. I chose this starting point because the end of World War II was a turbulent time for politics in the US, and this is when we begin to see our modern forms of Republicans and Democrats. We will examine which party each representative falls under and then examine which side won the majority of a particular vote. By doing this, we will be able to see when Democrats vote with Republicans or when Republicans vote with Democrats. Then, I will see if this bipartisanship grows, stays the same, or declines over the years. This means that if this bipartisan voting stays the same or has grown, then my hypothesis and the media would have been wrong. However, if the data shows a decline, It will prove that my hypothesis is correct.</p>
+<h2 id="one-data-visualization-milestone-3">One data visualization (Milestone 3)</h2>
+<h3 id="data-visualization-number-yeas">Data visualization (Number Yeas):</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data2</span> <span class='op'>&lt;-</span> <span class='va'>data1</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data1</span>,</span>
+<span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>,</span>
+<span>                     y <span class='op'>=</span> <span class='va'>number_yeas</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Number Yeas"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>data2</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<h3 id="data-visualization-number-nays">Data visualization (Number Nays):</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data3</span> <span class='op'>&lt;-</span> <span class='va'>data1</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data1</span>,</span>
+<span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>,</span>
+<span>                     y <span class='op'>=</span> <span class='va'>number_nays</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Number Nays"</span><span class='op'>)</span> </span>
+<span></span>
+<span><span class='va'>data3</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<h3 id="data-visualization-number-of-missing-votes">Data visualization (Number of Missing Votes):</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data4</span> <span class='op'>&lt;-</span> <span class='va'>data1</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data1</span>,</span>
+<span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>,</span>
+<span>                     y <span class='op'>=</span> <span class='va'>number_missing_votes</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Number Missing Votes (not voting and not in Congress)"</span><span class='op'>)</span> </span>
+<span></span>
+<span><span class='va'>data4</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
