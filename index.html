@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/Party Voting Splits(main).csv","hdemrep35_113.xlsx","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/Party Voting Splits(main).csv","hdemrep35_113.xlsx","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1520,6 +1520,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="project-thoughts-milestone-1">Project Thoughts (Milestone 1)</h2>
 <h3 id="discription">Discription:</h3>
 <p>I am interested in exploring data related to congress voting patterns between Democrats and Republicans throughout the history of the United States to try and illustrate how we as a two-party nation have become more and more polarized as the years go on.</p>
+<hr />
 <h2 id="finding-data-and-proposal-milestone-2">Finding Data and Proposal (Milestone 2)</h2>
 <h3 id="data">Data:</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -1544,17 +1545,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>         number_republican_nays <span class='op'>=</span> <span class='va'>X3</span>,</span>
 <span>         number_democrat_yeas <span class='op'>=</span> <span class='va'>X124</span>,</span>
 <span>         number_democrat_nays <span class='op'>=</span> <span class='va'>X0</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>congress_number</span> <span class='op'>&gt;=</span> <span class='fl'>76</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>year_month<span class='op'>=</span><span class='va'>year</span><span class='op'>*</span><span class='fl'>100</span><span class='op'>+</span><span class='va'>month</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year_month</span> <span class='op'>&gt;=</span> <span class='fl'>194509</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>congress_number</span>, <span class='va'>roll_call_number</span>, <span class='va'>month</span>, <span class='va'>day</span>, <span class='va'>year</span>, <span class='va'>number_missing_votes</span>, <span class='va'>number_yeas</span>, <span class='va'>number_nays</span>, <span class='va'>number_republican_yeas</span>, <span class='va'>number_republican_nays</span>, <span class='va'>number_democrat_yeas</span>, <span class='va'>number_democrat_nays</span><span class='op'>)</span> </span></code></pre>
 </div>
 </div>
 <h3 id="discription-1">Discription:</h3>
 <p>My research question for my project is one I find very interesting and important. Is the United States of America more polarized than ever, or has it seen worse? Looking at the news and media nowadays, all we see is anger, lack of communication, misunderstanding, and hate. However, is this true, or is it just the media outlets making up stories to generate viewership? This project will attempt to prove or discredit these claims. I hypothesize that if the media is correct in its claims, then the United State’s center of Democracy, its Congress, should reflect this disunity. For this project, I plan to observe voting patterns between Democrats and Republicans in the House of Representatives. Starting after the end of the Second World War, from the 81st Congress of the United States and on to the modern day. I chose this starting point because the end of World War II was a turbulent time for politics in the US, and this is when we begin to see our modern forms of Republicans and Democrats. We will examine which party each representative falls under and then examine which side won the majority of a particular vote. By doing this, we will be able to see when Democrats vote with Republicans or when Republicans vote with Democrats. Then, I will see if this bipartisanship grows, stays the same, or declines over the years. This means that if this bipartisan voting stays the same or has grown, then my hypothesis and the media would have been wrong. However, if the data shows a decline, It will prove that my hypothesis is correct.</p>
+<hr />
 <h2 id="one-data-visualization-milestone-3">One data visualization (Milestone 3)</h2>
 <h3 id="data-visualization-number-yeas">Data visualization (Number Yeas):</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data2</span> <span class='op'>&lt;-</span> <span class='va'>data1</span> <span class='op'>|&gt;</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>yea_votes</span> <span class='op'>&lt;-</span> <span class='va'>data1</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data1</span>,</span>
 <span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>,</span>
 <span>                     y <span class='op'>=</span> <span class='va'>number_yeas</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
@@ -1563,14 +1566,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
 <span>    y <span class='op'>=</span> <span class='st'>"Number Yeas"</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>data2</span></span></code></pre>
+<span><span class='va'>yea_votes</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
 <h3 id="data-visualization-number-nays">Data visualization (Number Nays):</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data3</span> <span class='op'>&lt;-</span> <span class='va'>data1</span> <span class='op'>|&gt;</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nay_votes</span> <span class='op'>&lt;-</span> <span class='va'>data1</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data1</span>,</span>
 <span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>,</span>
 <span>                     y <span class='op'>=</span> <span class='va'>number_nays</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
@@ -1579,14 +1582,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
 <span>    y <span class='op'>=</span> <span class='st'>"Number Nays"</span><span class='op'>)</span> </span>
 <span></span>
-<span><span class='va'>data3</span></span></code></pre>
+<span><span class='va'>nay_votes</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
 <h3 id="data-visualization-number-of-missing-votes">Data visualization (Number of Missing Votes):</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data4</span> <span class='op'>&lt;-</span> <span class='va'>data1</span> <span class='op'>|&gt;</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>missing_votes</span> <span class='op'>&lt;-</span> <span class='va'>data1</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data1</span>,</span>
 <span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>,</span>
 <span>                     y <span class='op'>=</span> <span class='va'>number_missing_votes</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
@@ -1595,11 +1598,170 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
 <span>    y <span class='op'>=</span> <span class='st'>"Number Missing Votes (not voting and not in Congress)"</span><span class='op'>)</span> </span>
 <span></span>
-<span><span class='va'>data4</span></span></code></pre>
+<span><span class='va'>missing_votes</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<hr />
+<h2 id="results-from-one-analysis-milestone-4">Results from one analysis (Milestone 4)</h2>
+<h3 id="data-visualization">Data visualization:</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data_year</span> <span class='op'>&lt;-</span> <span class='va'>data1</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>number_missing_votes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>number_missing_votes</span><span class='op'>)</span>,</span>
+<span>            number_yeas <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>number_yeas</span><span class='op'>)</span>,</span>
+<span>            number_nays <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>number_nays</span><span class='op'>)</span>,</span>
+<span>            number_republican_yeas <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>number_republican_yeas</span><span class='op'>)</span>,</span>
+<span>            number_republican_nays <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>number_republican_nays</span><span class='op'>)</span>,</span>
+<span>            number_democrat_yeas <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>number_democrat_yeas</span><span class='op'>)</span>,</span>
+<span>            number_democrat_nays <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>number_democrat_nays</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>data_year</span> <span class='op'>&lt;-</span> <span class='va'>data_year</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total_votes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>number_missing_votes</span>,<span class='va'>number_yeas</span>,<span class='va'>number_nays</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>prop_missing <span class='op'>=</span> <span class='va'>number_missing_votes</span><span class='op'>/</span><span class='va'>total_votes</span>,</span>
+<span>         prop_yeas <span class='op'>=</span> <span class='va'>number_yeas</span><span class='op'>/</span><span class='va'>total_votes</span>,</span>
+<span>         prop_nays <span class='op'>=</span> <span class='va'>number_nays</span><span class='op'>/</span><span class='va'>total_votes</span></span>
+<span>         <span class='op'>)</span></span>
+<span><span class='va'>data_year</span></span></code></pre>
+</div>
+<pre><code># A tibble: 71 × 12
+    year number_missing_votes number_yeas number_nays
+   &lt;int&gt;                &lt;int&gt;       &lt;int&gt;       &lt;int&gt;
+ 1  1945                 3125        7188        3451
+ 2  1946                14034       28029       15657
+ 3  1947                 4941       22229       10294
+ 4  1948                 5651       20350        9233
+ 5  1949                 8053       29093       15973
+ 6  1950                11448       33014       21388
+ 7  1951                 7210       26950       15992
+ 8  1952                 6206       16364        9398
+ 9  1953                 2941       16698       11317
+10  1954                 4462       20469        8205
+# ℹ 61 more rows
+# ℹ 8 more variables: number_republican_yeas &lt;int&gt;,
+#   number_republican_nays &lt;int&gt;, number_democrat_yeas &lt;int&gt;,
+#   number_democrat_nays &lt;int&gt;, total_votes &lt;int&gt;,
+#   prop_missing &lt;dbl&gt;, prop_yeas &lt;dbl&gt;, prop_nays &lt;dbl&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data_year_party_yeas</span> <span class='op'>&lt;-</span> <span class='va'>data_year</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>year</span>,<span class='va'>number_democrat_yeas</span>,<span class='va'>number_republican_yeas</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span>names_to <span class='op'>=</span><span class='st'>"party"</span>,values_to <span class='op'>=</span> <span class='st'>"yeas"</span>,cols <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>,names_pattern <span class='op'>=</span> <span class='st'>"number_?(.*)_yeas"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>data_year_party_nays</span> <span class='op'>&lt;-</span> <span class='va'>data_year</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>year</span>,<span class='va'>number_democrat_nays</span>,<span class='va'>number_republican_nays</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span>names_to <span class='op'>=</span><span class='st'>"party"</span>,values_to <span class='op'>=</span> <span class='st'>"nays"</span>,cols <span class='op'>=</span> <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>,names_pattern <span class='op'>=</span> <span class='st'>"number_?(.*)_nays"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>data_year_party</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>data_year_party_nays</span>,<span class='va'>data_year_party_yeas</span>,by<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"year"</span>,<span class='st'>"party"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total<span class='op'>=</span><span class='va'>nays</span><span class='op'>+</span><span class='va'>yeas</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>prop_nays<span class='op'>=</span><span class='va'>nays</span><span class='op'>/</span><span class='va'>total</span>,</span>
+<span>         prop_yeas<span class='op'>=</span><span class='va'>yeas</span><span class='op'>/</span><span class='va'>total</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>data_year_party</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>year</span>,y<span class='op'>=</span><span class='va'>prop_yeas</span>,color<span class='op'>=</span><span class='va'>party</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_path</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_color_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"blue"</span>,<span class='st'>"red"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span><span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>data_year_party</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>year</span>,y<span class='op'>=</span><span class='va'>prop_nays</span>,color<span class='op'>=</span><span class='va'>party</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_path</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_color_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"blue"</span>,<span class='st'>"red"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'>#install.packages("ggpubr")</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rpkgs.datanovia.com/ggpubr/'>ggpubr</a></span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html'>ggarrange</a></span><span class='op'>(</span><span class='va'>p1</span>,<span class='va'>p2</span>,ncol<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<h3 id="analysis-which-party-is-most-likley-to-vote-nay">Analysis (Which party is most likley to vote Nay?):</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/leifeld/texreg/'>'texreg'</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>data_republican</span> <span class='op'>&lt;-</span> <span class='va'>data_year_party</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>party</span> <span class='op'>==</span><span class='st'>"republican"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>fit1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>prop_nays</span> <span class='op'>~</span> <span class='va'>year</span>, data <span class='op'>=</span> <span class='va'>data_republican</span><span class='op'>)</span> </span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit1</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = prop_nays ~ year, data = data_republican)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.35474 -0.05146  0.00611  0.04967  0.17059 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 0.0245775  0.8827028   0.028    0.978
+year        0.0001634  0.0004458   0.367    0.715
+
+Residual standard error: 0.07746 on 69 degrees of freedom
+Multiple R-squared:  0.001945,  Adjusted R-squared:  -0.01252 
+F-statistic: 0.1344 on 1 and 69 DF,  p-value: 0.715</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/texreg/man/screenreg.html'>screenreg</a></span><span class='op'>(</span><span class='va'>fit1</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+====================
+             Model 1
+--------------------
+(Intercept)   0.02  
+             (0.88) 
+year          0.00  
+             (0.00) 
+--------------------
+R^2           0.00  
+Adj. R^2     -0.01  
+Num. obs.    71     
+====================
+*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data_democrat</span> <span class='op'>&lt;-</span> <span class='va'>data_year_party</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>party</span> <span class='op'>==</span><span class='st'>"democrat"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>fit2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>prop_nays</span> <span class='op'>~</span> <span class='va'>year</span>, data <span class='op'>=</span> <span class='va'>data_democrat</span><span class='op'>)</span> </span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit2</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = prop_nays ~ year, data = data_democrat)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.314467 -0.041471 -0.007832  0.028425  0.170924 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  1.0524567  0.9211378   1.143    0.257
+year        -0.0003653  0.0004652  -0.785    0.435
+
+Residual standard error: 0.08083 on 69 degrees of freedom
+Multiple R-squared:  0.00886,   Adjusted R-squared:  -0.005504 
+F-statistic: 0.6168 on 1 and 69 DF,  p-value: 0.4349</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/texreg/man/screenreg.html'>screenreg</a></span><span class='op'>(</span><span class='va'>fit2</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+====================
+             Model 1
+--------------------
+(Intercept)   1.05  
+             (0.92) 
+year         -0.00  
+             (0.00) 
+--------------------
+R^2           0.01  
+Adj. R^2     -0.01  
+Num. obs.    71     
+====================
+*** p &lt; 0.001; ** p &lt; 0.01; * p &lt; 0.05</code></pre>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
