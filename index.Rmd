@@ -8,6 +8,193 @@ output:
 ---
 
 
+# Introduction
+
+My research question for my project is one I find very interesting and important. Is the United States of America more polarized than ever, or has it seen worse? Looking at the news and media nowadays, we see anger, lack of communication, misunderstanding, and hate. However, is this true, or is it just the media outlets making up stories to generate viewership? This project will attempt to prove or discredit these claims. I hypothesize that if the media is correct in its claims, then the United State's center of Democracy, its Congress, should reflect this disunity. For this project, I plan to observe voting patterns between Democrats and Republicans in the House of Representatives. I am starting after the end of the Second World War, from the 81st Congress of the United States and on to the modern day. I chose this starting point because the end of World War II was a turbulent time for politics in the US, and this is when we begin to see our modern forms of Republicans and Democrats. We will examine which party each representative falls under and their voting patterns. By doing this, we will be able to see when Democrats vote with Republicans or when Republicans vote with Democrats. Then, I will see if this bipartisanship grows, stays the same, or declines over the years. This means that if this bipartisan voting remains the same or has increased, my hypothesis and the media would have been wrong. However, if the data shows a decline, It will prove that my hypothesis is correct. 
+
+
+# Data
+
+## What the data is?
+My data was titled Democrat and Republican Party Voting Splits for Congresses 35 through 113 gathered initially in May of 2015. I gathered this data from a website titled https://legacy.voteview.com/dwnl.htm. The site is an archived version of Voteview.com gathered from the University of Georgia. The critical dependent and independent variables are measured as a mathematical representation of observed data, making it a statistical model. To end, my research type was a longitudinal study because the data set measured a group of participants, AKA the United States Congress, over a period of time. 
+
+## Main Variables
+This data tracks many details about Congress, but I only used the variables I believed to be best for my research question (you can see them below). I did a lot of cutting and mutating from the original data, like shorting the data by year and finding the proportion of the number of Yea votes and the number of Nay votes for both parties.   
+
+-------------------------------------------------------------------------------------------
+Name                Description
+------------------- ------------------------------------------------------------------------
+`congress_number`   Congress number
+
+`roll_call_number`  State abbreviation
+
+`month`   			    Month
+
+`day`     	        Day
+
+`year`            	Year
+
+`number_missing_votes`     Number Missing Votes (not voting and not in Congress)
+
+`number_yeas`     	Number Yeas
+
+`number_nays`     	Number Nays
+
+`number_republican_yeas`   Number Republican Yeas
+
+`number_republican_nays`   Number Republican Nays
+
+`number_democrat_yeas`     Number Democrat Yeas
+
+`number_democrat_nays`     Number Democrat Nays
+----------------------------------------------------------------------------------------------------------
+
+## Visualization
+I wanted my visualization to depict both parties' proportion of voting over the years(for both Nays and Yeas). My goal for this visualization was to see a separation in how many times in a particular year Republicans voted Nay and how many times Democrats voted Nay and then do the same with both parties Yea votes. If we visualize separation in the number of Nay or Yea votes in a given year, then we could witness Political polarization.           
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+data <- read.csv("data/Party Voting Splits(main).csv")
+
+```
+
+```{r}
+data1 <- data |>
+  mutate(congress_number = X35,
+         roll_call_number = X1,
+         month = X12,
+         day = X7,
+         year = X1857,
+         number_missing_votes = X26,
+         number_yeas = X211,
+         number_nays = X6,
+         number_republican_yeas = X82,
+         number_republican_nays = X3,
+         number_democrat_yeas = X124,
+         number_democrat_nays = X0) |>
+  mutate(year_month=year*100+month) |>
+  filter(year_month >= 194509)|>
+  select(congress_number, roll_call_number, month, day, year, number_missing_votes, number_yeas, number_nays, number_republican_yeas, number_republican_nays, number_democrat_yeas, number_democrat_nays) 
+
+```
+
+```{r}
+data_year <- data1 |>
+  group_by(year) |>
+  summarize(number_missing_votes = sum(number_missing_votes),
+            number_yeas = sum(number_yeas),
+            number_nays = sum(number_nays),
+            number_republican_yeas = sum(number_republican_yeas),
+            number_republican_nays = sum(number_republican_nays),
+            number_democrat_yeas = sum(number_democrat_yeas),
+            number_democrat_nays = sum(number_democrat_nays))
+
+data_year <- data_year |>
+  mutate(total_votes = sum(number_missing_votes,number_yeas,number_nays)) |>
+  mutate(prop_missing = number_missing_votes/total_votes,
+         prop_yeas = number_yeas/total_votes,
+         prop_nays = number_nays/total_votes
+         )
+
+data_year
+
+data_year_party_yeas <- data_year |>
+  select(year,number_democrat_yeas,number_republican_yeas) |>
+  pivot_longer(names_to ="party",values_to = "yeas",cols = 2:3,names_pattern = "number_?(.*)_yeas")
+
+data_year_party_nays <- data_year |>
+  select(year,number_democrat_nays,number_republican_nays) |>
+  pivot_longer(names_to ="party",values_to = "nays",cols = 2:3,names_pattern = "number_?(.*)_nays")
+
+data_year_party <- left_join(data_year_party_nays,data_year_party_yeas,by=c("year","party")) |>
+  mutate(total=nays+yeas) |>
+  mutate(prop_nays=nays/total,
+         prop_yeas=yeas/total)
+
+p1 <- ggplot(data=data_year_party,aes(x=year,y=prop_yeas,color=party))+
+  geom_point()+
+  geom_path()+
+  scale_color_manual(values = c("blue","red")) +
+  labs(x = "Year",
+       y = "Proportion of Yea Votes")
+
+
+p2 <- ggplot(data=data_year_party,aes(x=year,y=prop_nays,color=party))+
+  geom_point()+
+  geom_path()+
+  scale_color_manual(values = c("blue","red")) +
+  labs(x = "Year",
+       y = "Proportion of Nay Votes")
+
+#install.packages("ggpubr")
+library(ggpubr)
+ggarrange(p1,p2,ncol=1)
+```
+## Visualization Description
+As we can see the two visualizations are similar. There are a few times when the Democrat's and Republicans' votes align. These visualizations show that during and after the 81st Congress, there were some stages of polarization and bipartisanship. For example, the most extended moment of polarization began from around 1980 to about 1995.     
+
+
+# Results
+
+## My regression model specification
+For this section, I used my data to see which party is most likely to vote for Nay. However, I added to my original regression, which can be found in a previous milestone, by adding some control variables (variables shown below). Initially, it was concluded that no party votes for Nay more than any other. Moreover, despite the added variables, neither Democrats nor Republicans were likelier to vote in the Nay.   
+
+### Control variables
+
+House Majority Party
+
+President Party 
+
+Whether There Was an Election in That Year (Congress)
+
+Whether There Was an Election in That Year (President)
+
+```{r}
+# majority
+cov <- read_csv("data/controlfr.csv")
+
+
+data_republican <- data_year_party |>
+  subset(party =="republican")
+
+data_democrat <- data_year_party |>
+  subset(party =="democrat")
+
+data_republican <- left_join(data_republican, cov, by="year")
+data_democrat <- left_join(data_democrat, cov, by="year" )
+```
+
+
+
+## Results
+```{r}
+library('texreg')
+
+fit1 <- lm(prop_nays ~ year + majority + president + congress_election + president_election, data = data_republican) 
+summary(fit1)
+screenreg(fit1)
+```
+
+```{r}
+
+fit2 <- lm(prop_nays ~ year + majority + president + congress_election + president_election, data = data_democrat) 
+summary(fit2)
+screenreg(fit2)
+```
+
+
+# Conclusion 
+
+To summarize what has been done in this final project, we first began by gathering the data from a particular site, then went through it and cropped it using the filter and mutate functions. After taking that data and coming up with proportions to create a scatter plot of the proportion of Nay votes and then of Yea votes over an extended period. Finally, we ended with two regression models, seeing which party was most likely to vote Nay. After we added control variables like what party had control of the house, what party was the president, and whether there was an election that year with either the congress or the executive branch. I hypothesized that if the United States is more polarized than ever, then that would be reflected in the Congress of the U.S. After examining the data, mainly my visualization and two regression models, it is safe to say that my hypothesis was incorrect and that there was no evidence of United States becoming less bipartisan over the years after WWII. However, my data could also be inconclusive because my major threat to inference was that I could have noted the number of missing votes variable better. Moreover, to improve my analysis, I could start much earlier in American history or attempt to note better each vote and why it was taken.                
+
+***
+
+
+
+
+
+***
 
 ## Project Thoughts (Milestone 1)
 
