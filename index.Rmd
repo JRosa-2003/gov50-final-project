@@ -16,9 +16,11 @@ My research question for my project is one I find very interesting and important
 # Data
 
 ## What the data is?
+
 My data was titled Democrat and Republican Party Voting Splits for Congresses 35 through 113 gathered initially in May of 2015. I gathered this data from a website titled https://legacy.voteview.com/dwnl.htm. The site is an archived version of Voteview.com gathered from the University of Georgia. The critical dependent and independent variables are measured as a mathematical representation of observed data, making it a statistical model. To end, my research type was a longitudinal study because the data set measured a group of participants, AKA the United States Congress, over a period of time. 
 
 ## Main Variables
+
 This data tracks many details about Congress, but I only used the variables I believed to be best for my research question (you can see them below). I did a lot of cutting and mutating from the original data, like shorting the data by year and finding the proportion of the number of Yea votes and the number of Nay votes for both parties.   
 
 -------------------------------------------------------------------------------------------
@@ -50,6 +52,7 @@ Name                Description
 ----------------------------------------------------------------------------------------------------------
 
 ## Visualization
+
 I wanted my visualization to depict both parties' proportion of voting over the years(for both Nays and Yeas). My goal for this visualization was to see a separation in how many times in a particular year Republicans voted Nay and how many times Democrats voted Nay and then do the same with both parties Yea votes. If we visualize separation in the number of Nay or Yea votes in a given year, then we could witness Political polarization.           
 
 ```{r}
@@ -132,13 +135,15 @@ library(ggpubr)
 ggarrange(p1,p2,ncol=1)
 ```
 ## Visualization Description
+
 As we can see the two visualizations are similar. There are a few times when the Democrat's and Republicans' votes align. These visualizations show that during and after the 81st Congress, there were some stages of polarization and bipartisanship. For example, the most extended moment of polarization began from around 1980 to about 1995.     
 
 
 # Results
 
 ## My regression model specification
-For this section, I used my data to see which party is most likely to vote for Nay. However, I added to my original regression, which can be found in a previous milestone, by adding some control variables (variables shown below). Initially, it was concluded that no party votes for Nay more than any other. Moreover, despite the added variables, neither Democrats nor Republicans were likelier to vote in the Nay.   
+
+For this section, I used my data to see which party is most likely to vote for Nay. However, I added to my original regression, which can be found in a previous milestone, by adding some control variables (variables shown below). Initially, it was concluded that no party votes for Nay more than any other. Moreover, despite the added variables, neither Democrats nor Republicans were likelier to vote in the Nay, so we would reject the null hypothesis.   
 
 ### Control variables
 
@@ -168,6 +173,7 @@ data_democrat <- left_join(data_democrat, cov, by="year" )
 
 
 ## Results
+
 ```{r}
 library('texreg')
 
@@ -189,6 +195,7 @@ screenreg(fit2)
 To summarize what has been done in this final project, we first began by gathering the data from a particular site, then went through it and cropped it using the filter and mutate functions. After taking that data and coming up with proportions to create a scatter plot of the proportion of Nay votes and then of Yea votes over an extended period. Finally, we ended with two regression models, seeing which party was most likely to vote Nay. After we added control variables like what party had control of the house, what party was the president, and whether there was an election that year with either the congress or the executive branch. I hypothesized that if the United States is more polarized than ever, then that would be reflected in the Congress of the U.S. After examining the data, mainly my visualization and two regression models, it is safe to say that my hypothesis was incorrect and that there was no evidence of United States becoming less bipartisan over the years after WWII. However, my data could also be inconclusive because my major threat to inference was that I could have noted the number of missing votes variable better. Moreover, to improve my analysis, I could start much earlier in American history or attempt to note better each vote and why it was taken.                
 
 ***
+
 
 
 
